@@ -1,18 +1,62 @@
-This examples uses FlaskRESTful Resource
-It works also with swag_from, schemas and spec_dict
+User Information
 ---
+tags:
+  - User
 parameters:
- - in: path
-   name: username
-   type: string
-   required: true
+  - name: body
+    in: body
+    schema:
+        type: object
+        properties:
+            data:
+                type: object
+                properties:
+                    id:
+                        type: string
+                        example: "abcd"
+                    name:
+                        type: string
+                        example: "Name"
+                    email:
+                        type: string
+                        example: "name@gmail.com"
+                    mobile:
+                        type: string
+                        example: "900090000"
+                    password:
+                        type: string
+                        example: "name"
+                    active:
+                        type: boolean
+                        example: true
+                    address:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: ""
+                            lane:
+                                type: string
+                                example: "82603"
+                            street:
+                                type: string
+                                example: "Stree"
+                            city:
+                                type: string
+                                example: "Hyderabad"
+                            state:
+                                type: string
+                                example: "Telangana"
+                            country:
+                                type: string
+                                example: "India"
+                            zipcode:
+                                type: integer
+                                example: 500089
+                    branch:
+                        type: string
+                        example: "DL_MAIN_BRANCH"
+
 responses:
- 200:
-   description: A single user item
-   schema:
-     id: User
-     properties:
-       username:
-         type: string
-         description: The name of the user
-         default: Steven Wilson
+    200:
+        description: "status:1 is success; status: 0 is failure;"
