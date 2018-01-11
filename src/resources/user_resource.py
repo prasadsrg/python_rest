@@ -1,19 +1,21 @@
 from flask import request, jsonify, json
 from flask_restful import  Resource
-from flask_jwt import jwt_required
+from flask_jwt import jwt_required, current_identity
 from flasgger import swag_from
 
 
 class UserResource (Resource):
 
+    @jwt_required()
     @swag_from('../../spec/user/save.yml')
     def put(self):
         req_json = json.loads(request.data)
-        req_data = None if 'data' not in req_json else req_json['data']
+        req_data = req_json.get('data', None)
 
         res_json = { }
         res_json['status']=1
         res_json['data'] = req_data
+        print(current_identity)
         return jsonify(res_json)
 
     @swag_from('../../spec/user/search.yml')

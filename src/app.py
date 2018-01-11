@@ -10,8 +10,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
-
-#jwt = JWT(app, authenticate, identity)
+from utils.security_user import SecurityUser
+jwt = JWT(app, SecurityUser.authenticate, SecurityUser.identity)
 
 from resources.user_resource import UserResource
 #
@@ -31,6 +31,7 @@ from resources.user_resource import UserResource
 #         return {'status': 1, 'data': 'HelloWorld'}
 
 api.add_resource(UserResource, '/user')
+api.add_resource(SecurityUser, '/auth')
 
 @app.after_request
 def after_request(response):
