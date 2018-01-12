@@ -1,0 +1,7 @@
+web:
+  build: .
+  container_name: py_flask
+  ports:
+    - "5001:5001"
+  volumes:
+    - .:/dist
