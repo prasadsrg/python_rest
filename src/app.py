@@ -10,6 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
 from utils.security_user import SecurityUser
+
 JWT.JWT_EXPIRATION_DELTA = 9999
 jwt = JWT(app, SecurityUser.authenticate, SecurityUser.identity)
 
