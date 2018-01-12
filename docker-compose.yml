@@ -1,7 +1,7 @@
-web:
-  build: .
-  container_name: py_flask
-  ports:
-    - "5001:5001"
-  volumes:
-    - .:/dist
+version: '2.0'
+services:
+  web:
+    build: .
+    ports:
+     - "5001:5001"
+

@@ -9,6 +9,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
+print(app.config)
+
 from utils.security_user import SecurityUser
 
 JWT.JWT_EXPIRATION_DELTA = 9999
@@ -94,4 +96,4 @@ if __name__ == '__main__':
     },)
     from db import db
     db.init_app(app)
-    app.run(port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
