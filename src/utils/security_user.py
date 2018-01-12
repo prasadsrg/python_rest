@@ -1,15 +1,12 @@
 from flasgger import swag_from
 from flask_restful import  Resource
 from flask import request, jsonify, json
+from itsdangerous import (TimedJSONWebSignatureSerializer
+                          as Serializer, BadSignature, SignatureExpired)
 
-class User(object):
-    def __init__(self, id, username, password):
+class JwtIdentify(object):
+    def __init__(self, id):
         self.id = id
-        self.username = username
-        self.password = password
-
-    def __str__(self):
-        return "User(id='%s')" % self.id
 
 
 class SecurityUser(Resource):
@@ -21,13 +18,12 @@ class SecurityUser(Resource):
     @staticmethod
     def authenticate(username, password):
         user = {}
-        user['id'] = (1, 'user1', 'abcxyz'),
-        user['password'] = password
-        print(user)
-        return User(1, 'user1', 'abcxyz')
+        user['id'] = 1
+        user['name'] = 'user1'
+        user['grpcode'] = 'abcd'
+        return JwtIdentify(user)
 
     @staticmethod
     def identity(payload):
-        user = payload['identity']
-        print(user)
-        return user
+        jwt_identity = payload['identity']
+        return jwt_identity
