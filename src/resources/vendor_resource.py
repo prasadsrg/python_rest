@@ -1,0 +1,43 @@
+from flask import request, jsonify, json
+from flask_restful import  Resource
+from flask_jwt import jwt_required, current_identity
+from flasgger import swag_from
+
+from services.vendor_service import VendorService
+
+class VendorResource (Resource):
+
+    vendor_service = VendorService()
+
+    @swag_from('../../spec/vendor/save.yml')
+    def put(self):
+        req_json = json.loads(request.data)
+        req_data = req_json.get('data', None)
+        res_data = self.vendor_service.save(req_data)
+        res_json = {'status': 1, 'data': res_data}
+        return jsonify(res_json)
+
+    @jwt_required()
+    @swag_from('../../spec/vendor/search.yml')
+    def post(self):
+        # return { 'status': 1, data : list(map( lambda x: x.json(), ItemModel.query.all() ) ) }
+        # return { 'status': 1, data : [x.json for x in ItemModel.query.all() ] }
+        return {'status': 1, 'data': 'HelloWorld'}
+
+    @jwt_required()
+    @swag_from('../../spec/vendor/entity.yml')
+    def get(self):
+        id = request.args['id']
+        res_json = { }
+        res_json['status']=1
+        res_json['data'] = {}
+        res_data =  res_json['data']
+        res_data['id']=id
+        return jsonify(res_json)
+
+    @jwt_required()
+    @swag_from('../../spec/vendor/delete.yml')
+    def delete(self):
+        # return { 'status': 1, data : list(map( lambda x: x.json(), ItemModel.query.all() ) ) }
+        # return { 'status': 1, data : [x.json for x in ItemModel.query.all() ] }
+        return {'status': 1, 'data': 'HelloWorld'}

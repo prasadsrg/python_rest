@@ -20,7 +20,7 @@ class SecurityUser(Resource):
         user = {}
         user['id'] = 1
         user['name'] = 'user1'
-        user['grpcode'] = 'abcd'
+        user['vid'] = 'DFF_TECH'
         return JwtIdentify(user)
 
     @staticmethod

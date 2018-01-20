@@ -1,13 +1,17 @@
-from flask import Flask, request
-from flask_restful import Api, Resource
-from flask_jwt import JWT
 from flasgger import Swagger
+from flask import Flask, request
+from flask_jwt import JWT
+from flask_restful import Api
+from config import app_config
+import os
 
-app = Flask(__name__)
-app.secret_key = 'abcd'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+config_name = os.getenv('ENV', 'dev')
+app = Flask(__name__, instance_relative_config=False)
+print(config_name)
 api = Api(app)
+app.config.from_object(app_config[config_name])
+#app.config.from_pyfile('config.py')
 
 print(app.config)
 
@@ -15,26 +19,11 @@ from utils.security_user import SecurityUser
 
 JWT.JWT_EXPIRATION_DELTA = 9999
 jwt = JWT(app, SecurityUser.authenticate, SecurityUser.identity)
-
-from resources.user_resource import UserResource
-#
-#
-# class UserResource(Resource):
-#
-#
-#     def get(self):
-#         # return { 'status': 1, data : list(map( lambda x: x.json(), ItemModel.query.all() ) ) }
-#         # return { 'status': 1, data : [x.json for x in ItemModel.query.all() ] }
-#         return {'status': 1, 'data': 'HelloWorld'}
-#
-#
-#     def post(self):
-#         # return { 'status': 1, data : list(map( lambda x: x.json(), ItemModel.query.all() ) ) }
-#         # return { 'status': 1, data : [x.json for x in ItemModel.query.all() ] }
-#         return {'status': 1, 'data': 'HelloWorld'}
-
-api.add_resource(UserResource, '/user')
 api.add_resource(SecurityUser, '/auth')
+from resources.user_resource import UserResource
+api.add_resource(UserResource, '/user')
+from resources.vendor_resource import VendorResource
+api.add_resource(VendorResource, '/vendor')
 
 # @app.after_request
 # def after_request(response):

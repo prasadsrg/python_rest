@@ -6,8 +6,3 @@ class UserModel(db.Model):
     id = db.Column('id', db.String, primary_key=True)
     name = db.Column('name', db.String)
     password = db.Column('password', db.String)
-
-    def __init__(self):
-        self.id = ''
-        self.name = ''
-        self.password = ''

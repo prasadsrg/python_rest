@@ -1,0 +1,31 @@
+Vendor Information
+---
+tags:
+  - Vendor
+parameters:
+  - name: body
+    in: body
+    schema:
+        type: object
+        properties:
+            data:
+                type: object
+                properties:
+                    id:
+                        type: string
+                        example: "DFF_TECH"
+                    name:
+                        type: string
+                        example: "DFF Tech"
+                    title:
+                        type: string
+                        example: "Yemmiganur"
+                    logo:
+                        type: string
+                        example: ""
+                    status:
+                        type: boolean
+                        example: true
+responses:
+    200:
+        description: "status:1 is success; status: 0 is failure;"
