@@ -3,20 +3,19 @@ from models.vendor_model import VendorModel
 
 class VendorHelper:
 
-    @staticmethod
-    def model_mapping(model, view):
+    def __init__(self, model, view):
+        self.model = model
+        self.view = view
 
-        # VendorModel(
-        #     id=view.get('id', None),
-        #     name=view.get('name', None),
-        #     title=view.get('title', None),
-        #     logo=view.get('logo', None),
-        #     status=view.get('status', None)
-        # )
-        print(view.get('logo', None))
-        model.id = view.get('id', None)
-        model.name = view.get('name', None)
-        model.title = view.get('title', None)
-        model.logo = view.get('logo', None)
-        model.status = view.get('status', None)
+    def model_val_assign(self, param):
+        if self.view.get(param):
+            setattr(self.model, param, self.view[param])
+
+    def model_mapping(self):
+        self.model_val_assign('id')
+        self.model_val_assign('name')
+        self.model_val_assign('logo')
+        self.model_val_assign('title')
+        self.model_val_assign('status')
+
 
