@@ -11,10 +11,17 @@ class VendorResource (Resource):
 
     @swag_from('../../spec/vendor/save.yml')
     def put(self):
-        req_json = json.loads(request.data)
-        req_data = req_json.get('data', None)
-        res_data = self.vendor_service.save(req_data)
-        res_json = {'status': 1, 'data': res_data}
+        try :
+            req_json = json.loads(request.data)
+            req_data = req_json.get('data', None)
+            res_data = self.vendor_service.save(req_data)
+            res_json = {'status': 1, 'data': res_data}
+        except Exception as e:
+            if e.args:
+                res_data = e.args[0]
+            else:
+                res_data = e
+            res_json = {'status': 0, 'data': res_data}
         return jsonify(res_json)
 
     @jwt_required()
