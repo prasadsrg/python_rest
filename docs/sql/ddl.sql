@@ -97,7 +97,7 @@ create table profile (
     aadhar varchar(99),
     password varchar(30) not null default '1234',
     token varchar(30),
-    role varchar(30) not null default 'User',
+    role varchar(30) not null default 'Anonymous',
     address_id varchar(30) not null,
     branch_id varchar(30) not null,
     img_id varchar(30) not null,
