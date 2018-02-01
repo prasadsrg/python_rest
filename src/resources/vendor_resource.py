@@ -4,14 +4,7 @@ from flask_jwt import jwt_required, current_identity
 from flasgger import swag_from
 
 from services.vendor_service import VendorService
-import decimal, datetime
-
-def alchemyencoder(obj):
-    """JSON encoder function for SQLAlchemy special classes."""
-    if isinstance(obj, datetime.date):
-        return obj.isoformat()
-    elif isinstance(obj, decimal.Decimal):
-        return float(obj)
+from utils.util import model_to_dict
 
 class VendorResource (Resource):
 
@@ -39,7 +32,7 @@ class VendorResource (Resource):
         try :
             res_data = self.vendor_service.search()
             print(res_data)
-            res_json = {'status': 1, 'data': json.dumps([dict(x) for x in res_data ], default=alchemyencoder )}
+            res_json = {'status': 1, 'data': [ model_to_dict(x) for x in res_data ]}
             print(res_json)
         except Exception as e:
             if e.args:
