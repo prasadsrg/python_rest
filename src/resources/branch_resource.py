@@ -14,6 +14,7 @@ class BranchResource (Resource):
     @swag_from('../../spec/branch/save.yml')
     def put(self):
         try :
+            self.branch_service.session_info = current_identity
             req_json = json.loads(request.data)
             req_data = req_json.get('data', None)
             res_data = self.branch_service.save(req_data)

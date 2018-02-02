@@ -17,7 +17,8 @@ print(app.config)
 
 from utils.security_user import SecurityUser
 
-JWT.JWT_EXPIRATION_DELTA = datetime.timedelta(days=1)
+JWT.JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=9999999)
+app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(seconds=9999999)
 jwt = JWT(app, SecurityUser.authenticate, SecurityUser.identity)
 api.add_resource(SecurityUser, '/auth')
 from resources.user_resource import UserResource

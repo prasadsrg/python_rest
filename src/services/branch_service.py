@@ -1,24 +1,38 @@
 from db import db
-import json
+from utils.util import uid
 from models.branch_model import BranchModel
-#from helpers.vendor_helper import VendorHelper
-
+from models.address_model import AddressModel
+from helpers.branch_helper import BranchHelper
+from helpers.address_helper import AddressHelper
+import datetime
 
 class BranchService:
 
     session_info = None
 
-    # def save(self, req_data):
-    #     vendor = None
-    #     if req_data.get('id', None) is not None:
-    #        vendor = VendorModel.query.filter_by(id=req_data.get('id')).first()
-    #     if vendor is None:
-    #         vendor = VendorModel()
-    #
-    #     VendorHelper(vendor, req_data).model_mapping()
-    #     db.session.add(vendor)
-    #     db.session.commit()
-    #     return {'message': 'Saved Successfully'}
+    def mapping(self, model, view):
+        print(self.session_info)
+        if view.get('id', None) is not None:
+            model = BranchModel.query.filter_by(id=view.get('id')).first()
+        if model is None:
+            model = BranchModel()
+            model.id = uid()
+            model.address = AddressModel()
+            model.address.id = model.id
+
+        model.vid = self.session_info['vid']
+        model.updatedBy = self.session_info['id']
+        model.updatedOn = datetime.datetime.now()
+
+        BranchHelper(model, view).model_mapping()
+        AddressHelper(model.address, view.get('address', None)).model_mapping()
+        return model
+
+    def save(self, req_data):
+        branch = self.mapping(None, req_data)
+        db.session.add(branch)
+        db.session.commit()
+        return {'message': 'Saved Successfully', 'id': branch.id}
 
 
     def search(self):

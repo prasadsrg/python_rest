@@ -11,7 +11,6 @@ class BranchModel(db.Model):
     email = db.Column('email', db.String)
     pan = db.Column('pan', db.String)
     tan = db.Column('tan', db.String)
-    phone = db.Column('phone', db.String)
     lat = db.Column('lat', db.String)
     lng = db.Column('lng', db.String)
     isMain = db.Column('is_main', db.Boolean)

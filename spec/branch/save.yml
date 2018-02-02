@@ -13,7 +13,6 @@ parameters:
                 properties:
                     id:
                         type: string
-                        example: "ABCD_BRANCH"
                     name:
                       type: string
                       example: "abcd branch"
@@ -22,7 +21,6 @@ parameters:
                       properties:
                         id:
                           type: string
-                          example: ""
                         city:
                           type: string
                           example: "abcd"
