@@ -1,6 +1,3 @@
-from models.vendor_model import VendorModel
-
-
 class AddressHelper:
 
     def __init__(self, model, view):
