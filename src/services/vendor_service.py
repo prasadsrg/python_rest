@@ -1,7 +1,7 @@
 from db import db
 import json
 from models.vendor_model import VendorModel
-from helpers.vendor_helper import VendorHelper
+from mappers.vendor_mapper import VendorMapper
 
 
 class VendorService:
@@ -15,7 +15,7 @@ class VendorService:
         if vendor is None:
             vendor = VendorModel()
 
-        VendorHelper(vendor, req_data).model_mapping()
+        VendorMapper(vendor, req_data).model_mapping()
         db.session.add(vendor)
         db.session.commit()
         return {'message': 'Saved Successfully'}

@@ -18,9 +18,10 @@ class SecurityUser(Resource):
     @staticmethod
     def authenticate(username, password):
         user = {}
-        user['id'] = 1
-        user['name'] = 'user1'
-        user['vid'] = 'DFF_TECH'
+        user['id'] = 'SUPPORT_DFF_USER'
+        user['name'] = 'Support User'
+        user['role'] = 'SuperAdmin'
+        user['vid'] = 'DFF'
         return JwtIdentify(user)
 
     @staticmethod

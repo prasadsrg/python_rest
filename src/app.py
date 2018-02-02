@@ -4,7 +4,7 @@ from flask_jwt import JWT
 from flask_restful import Api
 from config import app_config
 import os
-
+import datetime
 
 config_name = os.getenv('ENV', 'dev')
 app = Flask(__name__, instance_relative_config=False)
@@ -17,13 +17,18 @@ print(app.config)
 
 from utils.security_user import SecurityUser
 
-JWT.JWT_EXPIRATION_DELTA = 9999
+JWT.JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=9999999)
+app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(seconds=9999999)
 jwt = JWT(app, SecurityUser.authenticate, SecurityUser.identity)
 api.add_resource(SecurityUser, '/auth')
 from resources.user_resource import UserResource
 api.add_resource(UserResource, '/user')
+
 from resources.vendor_resource import VendorResource
 api.add_resource(VendorResource, '/vendor')
+
+from resources.branch_resource import BranchResource
+api.add_resource(BranchResource, '/branch')
 
 # @app.after_request
 # def after_request(response):
