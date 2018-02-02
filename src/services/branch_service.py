@@ -2,8 +2,8 @@ from db import db
 from utils.util import uid
 from models.branch_model import BranchModel
 from models.address_model import AddressModel
-from helpers.branch_helper import BranchHelper
-from helpers.address_helper import AddressHelper
+from mappers.branch_mapper import BranchMapper
+from mappers.address_mapper import AddressMapper
 import datetime
 
 class BranchService:
@@ -24,8 +24,8 @@ class BranchService:
         model.updatedBy = self.session_info['id']
         model.updatedOn = datetime.datetime.now()
 
-        BranchHelper(model, view).model_mapping()
-        AddressHelper(model.address, view.get('address', None)).model_mapping()
+        BranchMapper(model, view).model_mapping()
+        AddressMapper(model.address, view.get('address', None)).model_mapping()
         return model
 
     def save(self, req_data):

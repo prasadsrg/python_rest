@@ -30,7 +30,7 @@ create table apex_report_data (
 );
 alter table apex_report_data add constraint apex_report_data_fk_apex_report_id foreign key (apex_report_id) references apex_report(id);
 
-create table app_menu(
+create table access_menu(
     id varchar(99) primary key,
     name varchar(50) not null,
     menu varchar(50) not null,

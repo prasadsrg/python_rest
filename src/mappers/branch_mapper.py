@@ -1,7 +1,4 @@
-from models.address_model import AddressModel
-from helpers.address_helper import AddressHelper
-
-class BranchHelper:
+class BranchMapper:
 
     def __init__(self, model, view):
         self.model = model
