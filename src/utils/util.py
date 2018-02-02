@@ -1,11 +1,12 @@
 from sqlalchemy.orm.mapper import class_mapper
+from sqlalchemy import inspect
 
 def model_to_dict(obj, visited_children=None, back_relationships=None):
     if visited_children is None:
         visited_children = set()
     if back_relationships is None:
         back_relationships = set()
-    serialized_data = {c.key: getattr(obj, c.key) for c in obj.__table__.columns}
+    serialized_data = {c.key: getattr(obj, c.key) for c in inspect(obj).mapper.column_attrs}
     relationships = class_mapper(obj.__class__).relationships
     visitable_relationships = [(name, rel) for name, rel in relationships.items() if name not in back_relationships]
     for name, relation in visitable_relationships:
