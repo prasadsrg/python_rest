@@ -1,0 +1,51 @@
+Consumer Information
+---
+tags:
+  - Consumer
+parameters:
+  - name: body
+    in: body
+    schema:
+        type: object
+        properties:
+            data:
+                type: object
+                properties:
+                    id:
+                        type: string
+                    name:
+                      type: string
+                      example: "abcd consumer"
+                    mobile:
+                      type: string
+                      example: "0000000000"
+                    email:
+                      type: string
+                      example: "main@branch.com"
+                    aadhar:
+                      type: string
+                      example: "628079361300"
+                    imgId:
+                      type: string
+                      example: "1"
+                    addressId:
+                      type: string
+                      example: "0.00000000000"
+                    active:
+                      type: boolean
+                      example: true
+                    vid:
+                      type: string
+                      example: "123456789"
+                    createdOn:
+                      type: string
+                      example: "2018-02-03 00 00 00"
+                    updatedBy:
+                      type: string
+                      example: "123456789"
+                    updatedOn:
+                      type: string
+                      example: "2018-02-03 00 00 00"
+responses:
+    200:
+        description: "status:1 is success; status: 0 is failure;"
