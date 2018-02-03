@@ -1,7 +1,7 @@
-Branch Information Search
+Consumer Information Search
 ---
 tags:
-  - Branch
+  - Consumer
 parameters:
   - name: body
     in: body
