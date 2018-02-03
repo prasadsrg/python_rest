@@ -19,18 +19,43 @@ parameters:
                     mobile:
                       type: string
                       example: "123456789"
+                    address:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        city:
+                          type: string
+                          example: "abcd"
+                        country:
+                          type: string
+                          example: "India"
+                        lane:
+                          type: string
+                          example: "abcd"
+                        state:
+                          type: string
+                          example: "abcd"
+                        zipcode:
+                          type: string
+                          example: "516789"
                     email:
                       type: string
                       example: "main@branch.com"
                     aadhar:
                       type: string
                       example: "628079361300"
-                    imgId:
-                      type: string
-                      example: "1234"
-                    addressId:
-                      type: string
-                      example: "1234"
+                    img:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                          example: "abcd"
+                        src:
+                          type: string
+                          example: "source"
                     vid:
                       type: string
                       example: "1234"

@@ -16,13 +16,8 @@ class ConsumerMapper:
             self.model_val_assign('mobile')
             self.model_val_assign('email')
             self.model_val_assign('aadhar')
-            self.model_val_assign('img_id')
-            self.model_val_assign('address_id')
             self.model_val_assign('active')
             self.model_val_assign('vid')
             self.model_val_assign('created_on')
             self.model_val_assign('updated_by')
             self.model_val_assign('updated_on')
-
-
-

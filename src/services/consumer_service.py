@@ -1,10 +1,14 @@
 from db import db
 from utils.util import uid
 from models.consumer_model import ConsumerModel
+from models.img_model import ImgModel
 from mappers.consumer_mapper import ConsumerMapper
+from mappers.img_mapper import ImgMapper
+from models.address_model import AddressModel
+from mappers.address_mapper import AddressMapper
 import datetime
 
-class ConsumerService:
+class BranchService:
 
     session_info = None
 
@@ -15,12 +19,18 @@ class ConsumerService:
         if model is None:
             model = ConsumerModel()
             model.id = uid()
+            model.address = AddressModel()
+            model.address.id = model.id
+            model.img = ImgModel
+            model.img.id = model.id
 
         model.vid = self.session_info['vid']
         model.updatedBy = self.session_info['id']
         model.updatedOn = datetime.datetime.now()
 
         ConsumerMapper(model, view).model_mapping()
+        AddressMapper(model.address, view.get('address', None)).model_mapping()
+        ImgMapper(model.img, view.get('img', None)).model_mapping()
         return model
 
     def save(self, req_data):

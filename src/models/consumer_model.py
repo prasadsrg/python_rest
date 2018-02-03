@@ -1,4 +1,6 @@
 from db import db
+from models.img_model import ImgModel
+from models.address_model import AddressModel
 
 class ConsumerModel(db.Model):
     __tablename__ = 'consumer'
@@ -8,8 +10,10 @@ class ConsumerModel(db.Model):
     mobile = db.Column('mobile', db.String)
     email = db.Column('email', db.String)
     aadhar = db.Column('aadhar', db.String)
-    imgId = db.Column('img_id', db.String)
-    addressId = db.Column('address_id', db.String)
+    imgId = db.Columndb.Column('img_id', db.String, db.ForeignKey('img.id'))
+    img = db.relationship(ImgModel)
+    addressId = db.Column('address_id', db.String, db.ForeignKey('address.id'))
+    address = db.relationship(AddressModel)
     active = db.Column('active', db.Boolean)
     vid = db.Column('vid', db.String)
     createdOn = db.Column('created_on', db.DateTime)

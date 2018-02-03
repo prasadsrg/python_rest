@@ -30,6 +30,8 @@ api.add_resource(VendorResource, '/vendor')
 from resources.branch_resource import BranchResource
 api.add_resource(BranchResource, '/branch')
 
+from resources.consumer_resource import ConsumerResource
+api.add_resource(ConsumerResource, '/consumer')
 # @app.after_request
 # def after_request(response):
 #     response.headers.add('Access-Control-Allow-Origin', '*')
