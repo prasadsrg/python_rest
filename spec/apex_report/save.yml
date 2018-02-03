@@ -1,0 +1,21 @@
+ApexReport Information
+---
+tags:
+  - ApexReport
+parameters:
+  - name: body
+    in: body
+    schema:
+        type: object
+        properties:
+            data:
+                type: object
+                properties:
+                    id:
+                        type: string
+                    name:
+                      type: string
+                      example: "abcd apex report"
+responses:
+    200:
+        description: "status:1 is success; status: 0 is failure;"
