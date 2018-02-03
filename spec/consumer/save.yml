@@ -12,7 +12,7 @@ parameters:
                 type: object
                 properties:
                     id:
-                        type: null
+                        type: string
                     name:
                       type: string
                       example: "abcd Consumer"
@@ -50,7 +50,7 @@ parameters:
                       type: object
                       properties:
                         id:
-                          type: null
+                          type: string
                         name:
                           type: string
                           example: "abcd"
