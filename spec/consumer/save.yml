@@ -23,7 +23,7 @@ parameters:
                       type: object
                       properties:
                         id:
-                          type: null
+                          type: string
 
                         city:
                           type: string
