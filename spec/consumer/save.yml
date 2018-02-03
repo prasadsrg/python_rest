@@ -56,21 +56,9 @@ parameters:
                         src:
                           type: string
                           example: "source"
-                    vid:
-                      type: string
-                      example: "1234"
-                    createdOn:
-                      type: string
-                      example: "2018-02-03 00 00 00"
                     active:
                       type: boolean
                       example: true
-                    updatedBy:
-                      type: string
-                      example: "naveen"
-                    updatedOn:
-                      type: string
-                      example: "2018-02-03 00 00 00"
 responses:
     200:
         description: "status:1 is success; status: 0 is failure;"

@@ -21,8 +21,9 @@ class ConsumerService:
             model.id = uid()
             model.address = AddressModel()
             model.address.id = model.id
-            model.img = ImgModel
+            model.img = ImgModel()
             model.img.id = model.id
+            model.createdOn = datetime.datetime.now()
 
         model.vid = self.session_info['vid']
         model.updatedBy = self.session_info['id']
