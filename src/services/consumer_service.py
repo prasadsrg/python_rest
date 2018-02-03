@@ -8,7 +8,7 @@ from models.address_model import AddressModel
 from mappers.address_mapper import AddressMapper
 import datetime
 
-class BranchService:
+class ConsumerService:
 
     session_info = None
 

@@ -10,7 +10,7 @@ class ConsumerModel(db.Model):
     mobile = db.Column('mobile', db.String)
     email = db.Column('email', db.String)
     aadhar = db.Column('aadhar', db.String)
-    imgId = db.Columndb.Column('img_id', db.String, db.ForeignKey('img.id'))
+    imgId = db.Column('img_id', db.String, db.ForeignKey('img.id'))
     img = db.relationship(ImgModel)
     addressId = db.Column('address_id', db.String, db.ForeignKey('address.id'))
     address = db.relationship(AddressModel)
