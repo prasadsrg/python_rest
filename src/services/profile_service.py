@@ -33,8 +33,8 @@ class ProfileService:
         model.createdOn = datetime.datetime.now()
 
         ProfileMapper(model, view).model_mapping()
-        BranchMapper(model.branch, view.get('address', None)).model_mapping()
-        ImgMapper(model.img, view.get('address', None)).model_mapping()
+        BranchMapper(model.branch, view.get('branch', None)).model_mapping()
+        ImgMapper(model.img, view.get('img', None)).model_mapping()
         return model
 
     def save(self, req_data):
