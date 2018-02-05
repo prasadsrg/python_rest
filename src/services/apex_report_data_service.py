@@ -23,7 +23,7 @@ class ApexReportDataService:
 
         model.vid = self.session_info['vid']
         ApexReportDataMapper(model, view).model_mapping()
-        ApexReportMapper(model.apexReport, view.get('apex_report', None)).model_mapping()
+        ApexReportMapper(model.apexReport, view.get('apexReport', None)).model_mapping()
         return model
 
     def save(self, req_data):

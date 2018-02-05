@@ -7,5 +7,5 @@ class ApexReportDataModel(db.Model):
     id = db.Column('id', db.String, primary_key=True)
     name = db.Column('name', db.String)
     status = db.Column('status', db.Boolean)
-    apexReportId = db.Column('apex_report_id', db.String, db.ForeignKey('apex_report_id.id'))
+    apexReportId = db.Column('apex_report_id', db.String, db.ForeignKey('apex_report.id'))
     apexReport = db.relationship(ApexReportModel)
