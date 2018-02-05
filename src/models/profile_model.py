@@ -1,4 +1,5 @@
 from db import db
+from models.address_model import AddressModel
 from models.img_model import ImgModel
 from models.branch_model import BranchModel
 
@@ -14,13 +15,15 @@ class ProfileModel(db.Model):
     password = db.Column('password', db.String)
     token = db.Column('token', db.String)
     role = db.Column('role', db.String)
+    addressId = db.Column('address_id', db.String, db.ForeignKey('address.id'))
+    address = db.relationship(AddressModel)
     branchId = db.Column('branch_id', db.String, db.ForeignKey('branch.id'))
     branch = db.relationship(BranchModel)
     imgId = db.Column('img_id', db.String, db.ForeignKey('img.id'))
     img = db.relationship(ImgModel)
     active = db.Column('active', db.Boolean)
     vid = db.Column('vid', db.String)
-    created_by = db.Column('created_by', db.String)
+    createdBy = db.Column('created_by', db.String)
     createdOn = db.Column('created_on', db.DateTime)
     updatedBy= db.Column('updated_by', db.String)
     updatedOn = db.Column('updated_on', db.DateTime)

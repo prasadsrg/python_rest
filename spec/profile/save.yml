@@ -12,65 +12,65 @@ parameters:
                 type: object
                 properties:
                     id:
-                        type: string
+                      type: string
                     name:
                       type: string
                       example: "abcd profile"
+                    address:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        city:
+                          type: string
+                          example: "abcd"
+                        country:
+                          type: string
+                          example: "India"
+                        lane:
+                          type: string
+                          example: "abcd"
+                        state:
+                          type: string
+                          example: "abcd"
+                        zipcode:
+                          type: string
+                          example: "516789"
                     branch:
                       type: object
                       properties:
-                          id:
-                              type: string
-                          name:
+                        id:
                             type: string
-                            example: "abcd branch"
-                          address:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                              city:
-                                type: string
-                                example: "abcd"
-                              country:
-                                type: string
-                                example: "India"
-                              lane:
-                                type: string
-                                example: "abcd"
-                              state:
-                                type: string
-                                example: "abcd"
-                              zipcode:
-                                type: string
-                                example: "516789"
-                          email:
-                            type: string
-                            example: "main@branch.com"
-                          isMain:
-                            type: boolean
-                            example: false
-                          lat:
-                            type: string
-                            example: "0.00000000000"
-                          lng:
-                            type: string
-                            example: "0.00000000000"
-                          mobile:
-                            type: string
-                            example: "123456789"
-                          pan:
-                            type: string
-                            example: "1234qwer"
-                          phone:
-                            type: string
-                            example: "123456789"
-                          tan:
-                            type: string
-                            example: "1234asdf"
-                          active:
-                            type: boolean
-                            example: true
+                        name:
+                          type: string
+                          example: "abcd branch"
+                        email:
+                          type: string
+                          example: "main@branch.com"
+                        isMain:
+                          type: boolean
+                          example: false
+                        lat:
+                          type: string
+                          example: "0.00000000000"
+                        lng:
+                          type: string
+                          example: "0.00000000000"
+                        mobile:
+                          type: string
+                          example: "123456789"
+                        pan:
+                          type: string
+                          example: "1234qwer"
+                        phone:
+                          type: string
+                          example: "123456789"
+                        tan:
+                          type: string
+                          example: "1234asdf"
+                        active:
+                          type: boolean
+                          example: true
                     img:
                       type: object
                       properties:
@@ -106,6 +106,7 @@ parameters:
                     active:
                       type: boolean
                       example: true
+
 
 responses:
     200:

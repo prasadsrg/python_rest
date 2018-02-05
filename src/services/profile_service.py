@@ -24,16 +24,25 @@ class ProfileService:
             model.id = uid()
             model.branch = BranchModel()
             model.branch.id = model.id
+            model.branch.vid = self.session_info['vid']
+            model.address = AddressModel()
+            model.address.id = model.id
+            model.address.vid = self.session_info['vid']
+            model.branch.address = model.address
+            model.branch.address.id = model.id
+            model.branch.address.vid = self.session_info['vid']
             model.img = ImgModel()
             model.img.id = model.id
 
         model.vid = self.session_info['vid']
+        model.createdBy = self.session_info['id']
         model.updatedBy = self.session_info['id']
         model.updatedOn = datetime.datetime.now()
         model.createdOn = datetime.datetime.now()
 
         ProfileMapper(model, view).model_mapping()
         BranchMapper(model.branch, view.get('branch', None)).model_mapping()
+        AddressMapper(model.address, view.get('address', None)).model_mapping()
         ImgMapper(model.img, view.get('img', None)).model_mapping()
         return model
 
