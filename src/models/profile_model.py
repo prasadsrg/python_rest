@@ -5,11 +5,10 @@ from models.branch_model import BranchModel
 
 class ProfileModel(db.Model):
 
-    __tablename__ = 'branch'
+    __tablename__ = 'profile'
 
     id = db.Column('id', db.String, primary_key=True)
     name = db.Column('name', db.String)
-    phone = db.Column('phone', db.String)
     mobile = db.Column('mobile', db.String)
     email = db.Column('email', db.String)
     aadhar = db.Column('aadhar', db.String)

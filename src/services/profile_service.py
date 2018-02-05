@@ -31,7 +31,7 @@ class ProfileService:
         model.updatedBy = self.session_info['id']
         model.updatedOn = datetime.datetime.now()
         model.createdOn = datetime.datetime.now()
-        
+
         ProfileMapper(model, view).model_mapping()
         BranchMapper(model.branch, view.get('address', None)).model_mapping()
         ImgMapper(model.img, view.get('address', None)).model_mapping()
