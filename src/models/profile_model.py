@@ -1,5 +1,4 @@
 from db import db
-from models.address_model import AddressModel
 from models.img_model import ImgModel
 from models.branch_model import BranchModel
 
