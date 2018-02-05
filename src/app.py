@@ -35,6 +35,7 @@ api.add_resource(ConsumerResource, '/consumer')
 
 from resources.apex_report_data_resource import ApexReportDataResource
 api.add_resource(ApexReportDataResource, '/apex_report_data')
+
 # @app.after_request
 # def after_request(response):
 #     response.headers.add('Access-Control-Allow-Origin', '*')

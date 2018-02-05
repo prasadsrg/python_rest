@@ -1,7 +1,7 @@
-Branch Information Search
+ApexReportData Information Search
 ---
 tags:
-  - Branch
+  - ApexReportData
 parameters:
   - name: body
     in: body
