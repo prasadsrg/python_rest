@@ -16,8 +16,6 @@ class ProfileModel(db.Model):
     password = db.Column('password', db.String)
     token = db.Column('token', db.String)
     role = db.Column('role', db.String)
-    addressId = db.Column('address_id', db.String, db.ForeignKey('address.id'))
-    address = db.relationship(AddressModel)
     branchId = db.Column('branch_id', db.String, db.ForeignKey('branch.id'))
     branch = db.relationship(BranchModel)
     imgId = db.Column('img_id', db.String, db.ForeignKey('img.id'))

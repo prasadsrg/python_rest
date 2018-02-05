@@ -22,8 +22,6 @@ class ProfileService:
         if model is None:
             model = ProfileModel()
             model.id = uid()
-            model.address = AddressModel()
-            model.address.id = model.id
             model.branch = BranchModel()
             model.branch.id = model.id
             model.img = ImgModel()
@@ -32,9 +30,9 @@ class ProfileService:
         model.vid = self.session_info['vid']
         model.updatedBy = self.session_info['id']
         model.updatedOn = datetime.datetime.now()
-
+        model.createdOn = datetime.datetime.now()
+        
         ProfileMapper(model, view).model_mapping()
-        AddressMapper(model.address, view.get('address', None)).model_mapping()
         BranchMapper(model.branch, view.get('address', None)).model_mapping()
         ImgMapper(model.img, view.get('address', None)).model_mapping()
         return model

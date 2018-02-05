@@ -16,26 +16,6 @@ parameters:
                     name:
                       type: string
                       example: "abcd profile"
-                    address:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        city:
-                          type: string
-                          example: "abcd"
-                        country:
-                          type: string
-                          example: "India"
-                        lane:
-                          type: string
-                          example: "abcd"
-                        state:
-                          type: string
-                          example: "abcd"
-                        zipcode:
-                          type: string
-                          example: "516789"
                     branch:
                       type: object
                       properties:
@@ -47,6 +27,26 @@ parameters:
                         email:
                           type: string
                           example: "main@branch.com"
+                        address:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            city:
+                              type: string
+                              example: "abcd"
+                            country:
+                              type: string
+                              example: "India"
+                            lane:
+                              type: string
+                              example: "abcd"
+                            state:
+                              type: string
+                              example: "abcd"
+                            zipcode:
+                              type: string
+                              example: "516789"
                         isMain:
                           type: boolean
                           example: false
