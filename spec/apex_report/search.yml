@@ -1,7 +1,7 @@
-ApexReportData Information Search
+ApexReport Information Search
 ---
 tags:
-  - ApexReportData
+  - ApexReport
 parameters:
   - name: body
     in: body
