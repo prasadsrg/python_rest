@@ -85,8 +85,6 @@ parameters:
                     email:
                       type: string
                       example: "main@branch.com"
-                    vid:
-                      type: string
                     aadhar:
                       type: string
                       example: "628079361300"
