@@ -13,13 +13,12 @@ api = Api(app)
 app.config.from_object(app_config[config_name])
 #app.config.from_pyfile('config.py')
 
-print(app.config)
-
 from utils.security_user import SecurityUser
 
 JWT.JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=9999999)
 app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(seconds=9999999)
 jwt = JWT(app, SecurityUser.authenticate, SecurityUser.identity)
+
 api.add_resource(SecurityUser, '/auth')
 from resources.user_resource import UserResource
 api.add_resource(UserResource, '/user')
@@ -30,6 +29,19 @@ api.add_resource(VendorResource, '/vendor')
 from resources.branch_resource import BranchResource
 api.add_resource(BranchResource, '/branch')
 
+
+from resources.consumer_resource import ConsumerResource
+api.add_resource(ConsumerResource, '/consumer')
+
+from resources.apex_report_data_resource import ApexReportDataResource
+api.add_resource(ApexReportDataResource, '/apex_report_data')
+
+from resources.apex_report_resource import ApexReportResource
+api.add_resource(ApexReportResource, '/apex_report')
+
+from resources.profile_resource import ProfileResource
+api.add_resource(ProfileResource, '/profile')
+
 from resources.access_menu_resource import AccessMenuResource
 api.add_resource(AccessMenuResource, '/access_menu')
 
@@ -38,6 +50,7 @@ api.add_resource(ApexDataResource, '/apex_data')
 
 from resources.app_data_resource import AppDataResource
 api.add_resource(AppDataResource, '/app_data')
+
 
 # @app.after_request
 # def after_request(response):
@@ -74,11 +87,39 @@ if __name__ == '__main__':
             ('Access-Control-Allow-Credentials', "true"),
         ],
     }
-    Swagger(app, template={
-        "swagger": "2.0",
-        "info": {
-            "version": "1.0",
-        },
+    # Swagger(app, template={
+    #     "swagger": "2.0",
+    #     "info": {
+    #         "version": "1.0",
+    #     },
+    #     "consumes": [
+    #         "application/json",
+    #         "application/x-www-form-urlencoded",
+    #     ],
+    #     "produces": [
+    #         "application/json",
+    #     ],
+    #     "securityDefinitions": {
+    #         "jwt": {
+    #             "type": 'apiKey',
+    #             "name": 'Authorization',
+    #             "in": 'header'
+    #         }
+    #     },
+    #     "security": [
+    #         {"jwt": []}
+    #     ]
+    # },)
+    swagger_config = {
+        'specs': [
+            {
+                'endpoint': 'apispec',
+                'route': '/apispec.json',
+                'rule_filter': lambda rule: True,
+                'model_filter': lambda tag: False,
+            }
+        ],
+        'swagger_ui': False,
         "consumes": [
             "application/json",
             "application/x-www-form-urlencoded",
@@ -94,9 +135,11 @@ if __name__ == '__main__':
             }
         },
         "security": [
-            {"jwt": []}
-        ]
-    },)
+            {"jwt": [ ]}
+        ],
+    }
+    Swagger(app, config=swagger_config)
+
     from db import db
     db.init_app(app)
     app.run(host='0.0.0.0', port=5001, debug=True)
