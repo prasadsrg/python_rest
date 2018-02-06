@@ -1,0 +1,35 @@
+AppData Information
+---
+tags:
+  - AppData
+parameters:
+  - name: body
+    in: body
+    schema:
+        type: object
+        properties:
+            data:
+                type: object
+                properties:
+                    id:
+                        type: string
+                    name:
+                      type: string
+                      example: "abcd branch"
+                    code:
+                      type: string
+                      example: "codestring"
+                    active:
+                      type: boolean
+                      example: true
+                    updateBy:
+                      type: string
+                      example: "updatestring"
+                    updateOn:
+                      type: datetime
+                      example: "date and time"
+
+
+responses:
+    200:
+        description: "status:1 is success; status: 0 is failure;"
