@@ -13,8 +13,6 @@ api = Api(app)
 app.config.from_object(app_config[config_name])
 #app.config.from_pyfile('config.py')
 
-print(app.config)
-
 from utils.security_user import SecurityUser
 
 JWT.JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=9999999)
@@ -78,11 +76,39 @@ if __name__ == '__main__':
             ('Access-Control-Allow-Credentials', "true"),
         ],
     }
-    Swagger(app, template={
-        "swagger": "2.0",
-        "info": {
-            "version": "1.0",
-        },
+    # Swagger(app, template={
+    #     "swagger": "2.0",
+    #     "info": {
+    #         "version": "1.0",
+    #     },
+    #     "consumes": [
+    #         "application/json",
+    #         "application/x-www-form-urlencoded",
+    #     ],
+    #     "produces": [
+    #         "application/json",
+    #     ],
+    #     "securityDefinitions": {
+    #         "jwt": {
+    #             "type": 'apiKey',
+    #             "name": 'Authorization',
+    #             "in": 'header'
+    #         }
+    #     },
+    #     "security": [
+    #         {"jwt": []}
+    #     ]
+    # },)
+    swagger_config = {
+        'specs': [
+            {
+                'endpoint': 'apispec',
+                'route': '/apispec.json',
+                'rule_filter': lambda rule: True,
+                'model_filter': lambda tag: False,
+            }
+        ],
+        'swagger_ui': False,
         "consumes": [
             "application/json",
             "application/x-www-form-urlencoded",
@@ -98,9 +124,11 @@ if __name__ == '__main__':
             }
         },
         "security": [
-            {"jwt": []}
-        ]
-    },)
+            {"jwt": [ ]}
+        ],
+    }
+    Swagger(app, config=swagger_config)
+
     from db import db
     db.init_app(app)
     app.run(host='0.0.0.0', port=5001, debug=True)
