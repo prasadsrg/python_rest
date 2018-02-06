@@ -20,6 +20,7 @@ from utils.security_user import SecurityUser
 JWT.JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=9999999)
 app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(seconds=9999999)
 jwt = JWT(app, SecurityUser.authenticate, SecurityUser.identity)
+
 api.add_resource(SecurityUser, '/auth')
 from resources.user_resource import UserResource
 api.add_resource(UserResource, '/user')
@@ -29,6 +30,18 @@ api.add_resource(VendorResource, '/vendor')
 
 from resources.branch_resource import BranchResource
 api.add_resource(BranchResource, '/branch')
+
+from resources.consumer_resource import ConsumerResource
+api.add_resource(ConsumerResource, '/consumer')
+
+from resources.apex_report_data_resource import ApexReportDataResource
+api.add_resource(ApexReportDataResource, '/apex_report_data')
+
+from resources.apex_report_resource import ApexReportResource
+api.add_resource(ApexReportResource, '/apex_report')
+
+from resources.profile_resource import ProfileResource
+api.add_resource(ProfileResource, '/profile')
 
 # @app.after_request
 # def after_request(response):
