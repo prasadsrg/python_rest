@@ -30,6 +30,15 @@ api.add_resource(VendorResource, '/vendor')
 from resources.branch_resource import BranchResource
 api.add_resource(BranchResource, '/branch')
 
+from resources.access_menu_resource import AccessMenuResource
+api.add_resource(AccessMenuResource, '/access_menu')
+
+# from resources.apex_data_resource import ApexDataResource
+# api.add_resource(ApexDataResource, '/access_data')
+#
+# from resources.app_data_resource import AppDataResource
+# api.add_resource(AppDataResource, '/app_data')
+
 # @app.after_request
 # def after_request(response):
 #     response.headers.add('Access-Control-Allow-Origin', '*')

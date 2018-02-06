@@ -19,9 +19,7 @@ class AccessMenuService:
         model.vid = self.session_info['vid']
         model.updatedBy = self.session_info['id']
         model.updatedOn = datetime.datetime.now()
-
         AccessMenuMapper(model, view).model_mapping()
-
         return model
 
     def save(self, req_data):

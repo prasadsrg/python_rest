@@ -3,10 +3,10 @@ from flask_restful import  Resource
 from flask_jwt import jwt_required, current_identity
 from flasgger import swag_from
 
-from services.acces_menu_service import AccessMenuService
+from services.access_menu_service import AccessMenuService
 from utils.util import model_to_dict
 
-class AccessMenuResource (Resource):
+class AccessMenuResource(Resource):
 
     access_menu_service = AccessMenuService()
 
@@ -17,7 +17,7 @@ class AccessMenuResource (Resource):
         try :
             res_data = self.access_menu_service.search()
             print(res_data)
-            res_json = {'status': 1, 'data': [ model_to_dict(x) for x in res_data ]}
+            res_json = {'status': 1, 'data': [model_to_dict(x) for x in res_data]}
             print(res_json)
         except Exception as e:
             print(e)
