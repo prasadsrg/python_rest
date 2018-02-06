@@ -14,6 +14,7 @@ class DevelopmentConfig(Config):
 
     DEBUG = True
     SQLALCHEMY_ECHO = True
+    HOST = '0.0.0.0'
 
 class ProductionConfig(Config):
     """
