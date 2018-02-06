@@ -4,7 +4,7 @@ from models.access_menu_model import AccessMenuModel
 from mappers.access_menu_mapper import AccessMenuMapper
 import datetime
 
-class AccessMenuServices:
+class AccessMenuService:
 
     session_info = None
 

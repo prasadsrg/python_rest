@@ -3,7 +3,7 @@ from models.app_data_model import AppDataModel
 from mappers.app_data_mapper import AppDataMapper
 import datetime
 
-class AppDataServices:
+class AppDataService:
     session_info = None
 
     def mapping(self, model, view):

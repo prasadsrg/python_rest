@@ -4,7 +4,7 @@ from mappers.apex_data_mapper import ApexDataMapper
 import datetime
 
 
-class ApexDataServices:
+class ApexDataService:
     session_info = None
 
     def mapping(self, model, view):
