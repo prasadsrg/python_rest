@@ -9,8 +9,8 @@ class ApexDataService:
 
     def mapping(self, model, view):
         print(self.session_info)
-        if view.get('name', None) is not None:
-            model = ApexDataModel.query.filter_by(name=view.get('name')).first()
+        if view.get('id', None) is not None:
+            model = ApexDataModel.query.filter_by(id=view.get('id')).first()
         if model is None:
             model = ApexDataModel()
 
