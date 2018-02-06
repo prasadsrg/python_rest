@@ -29,6 +29,7 @@ api.add_resource(VendorResource, '/vendor')
 from resources.branch_resource import BranchResource
 api.add_resource(BranchResource, '/branch')
 
+
 from resources.consumer_resource import ConsumerResource
 api.add_resource(ConsumerResource, '/consumer')
 
@@ -40,6 +41,16 @@ api.add_resource(ApexReportResource, '/apex_report')
 
 from resources.profile_resource import ProfileResource
 api.add_resource(ProfileResource, '/profile')
+
+from resources.access_menu_resource import AccessMenuResource
+api.add_resource(AccessMenuResource, '/access_menu')
+
+from resources.apex_data_resource import ApexDataResource
+api.add_resource(ApexDataResource, '/apex_data')
+
+from resources.app_data_resource import AppDataResource
+api.add_resource(AppDataResource, '/app_data')
+
 
 # @app.after_request
 # def after_request(response):
