@@ -34,10 +34,10 @@ from resources.access_menu_resource import AccessMenuResource
 api.add_resource(AccessMenuResource, '/access_menu')
 
 # from resources.apex_data_resource import ApexDataResource
-# api.add_resource(ApexDataResource, '/access_data')
+# api.add_resource(ApexDataResource, '/apex_data')
 #
-# from resources.app_data_resource import AppDataResource
-# api.add_resource(AppDataResource, '/app_data')
+from resources.app_data_resource import AppDataResource
+api.add_resource(AppDataResource, '/app_data')
 
 # @app.after_request
 # def after_request(response):

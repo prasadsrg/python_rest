@@ -1,5 +1,5 @@
 from flask import request, jsonify, json
-from flask_restful import  Resource
+from flask_restful import Resource
 from flask_jwt import jwt_required, current_identity
 from flasgger import swag_from
 
@@ -33,7 +33,7 @@ class AppDataResource (Resource):
         try :
             res_data = self.app_data_service.search()
             print(res_data)
-            res_json = {'status': 1, 'data': [ model_to_dict(x) for x in res_data ]}
+            res_json = {'status': 1, 'data': [model_to_dict(x) for x in res_data]}
             print(res_json)
         except Exception as e:
             print(e)

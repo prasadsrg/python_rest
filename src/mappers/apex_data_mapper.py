@@ -9,7 +9,7 @@ class ApexDataMapper:
         if self.view.get(param) is not None:
             setattr(self.model, param, self.view[param])
 
-    def model_maping(self):
+    def model_mapping(self):
         if self.view and self.model:
             self.model_val_assign('name')
             self.model_val_assign('code')

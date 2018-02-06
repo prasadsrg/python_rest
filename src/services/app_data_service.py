@@ -1,4 +1,5 @@
 from db import db
+from utils.util import uid
 from models.app_data_model import AppDataModel
 from mappers.app_data_mapper import AppDataMapper
 import datetime
@@ -13,12 +14,9 @@ class AppDataService:
             model = AppDataModel()
             model.id = uid()
 
-
-
         model.vid = self.session_info['vid']
         model.updatedBy = self.session_info['id']
         model.updatedOn = datetime.datetime.now()
-
         AppDataMapper(model, view).model_mapping()
         return model
 

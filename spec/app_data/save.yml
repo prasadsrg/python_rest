@@ -22,12 +22,6 @@ parameters:
                     active:
                       type: boolean
                       example: true
-                    updateBy:
-                      type: string
-                      example: "updatestring"
-                    updateOn:
-                      type: datetime
-                      example: "date and time"
 
 
 responses:
