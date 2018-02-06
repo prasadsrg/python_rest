@@ -88,10 +88,7 @@ if __name__ == '__main__':
         ],
     }
     # Swagger(app, template={
-    #     "swagger": "2.0",
-    #     "info": {
-    #         "version": "1.0",
-    #     },
+    #     "swagger": "3.0",
     #     "consumes": [
     #         "application/json",
     #         "application/x-www-form-urlencoded",
@@ -120,6 +117,11 @@ if __name__ == '__main__':
             }
         ],
         'swagger_ui': False,
+    }
+    Swagger(app, config=swagger_config, template={
+        "swagger": "3.0",
+        "headers": [
+        ],
         "consumes": [
             "application/json",
             "application/x-www-form-urlencoded",
@@ -135,10 +137,10 @@ if __name__ == '__main__':
             }
         },
         "security": [
-            {"jwt": [ ]}
-        ],
-    }
-    Swagger(app, config=swagger_config)
+            {"jwt": []}
+        ]
+
+    })
 
     from db import db
     db.init_app(app)

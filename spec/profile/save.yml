@@ -43,10 +43,10 @@ parameters:
                       properties:
                         id:
                             type: string
-                            example: null
+                            example: "DFF_MAIN_BRANCH"
                         name:
                           type: string
-                          example: "abcd branch"
+                          example: "DFF Main branch"
                     img:
                       type: object
                       properties:

@@ -22,7 +22,7 @@ class ProfileService:
         if model is None:
             model = ProfileModel()
             model.id = uid()
-           # model.branchId = view['branch']['id']
+            model.branchId = view['branch']['id']
             model.address = AddressModel()
             model.address.id = model.id
             model.address.vid = self.session_info['vid']
