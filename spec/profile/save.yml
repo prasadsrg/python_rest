@@ -13,6 +13,7 @@ parameters:
                 properties:
                     id:
                       type: string
+                      example: null
                     name:
                       type: string
                       example: "abcd profile"
@@ -21,6 +22,7 @@ parameters:
                       properties:
                         id:
                           type: string
+                          example: null
                         city:
                           type: string
                           example: "abcd"
@@ -41,36 +43,10 @@ parameters:
                       properties:
                         id:
                             type: string
+                            example: null
                         name:
                           type: string
                           example: "abcd branch"
-                        email:
-                          type: string
-                          example: "main@branch.com"
-                        isMain:
-                          type: boolean
-                          example: false
-                        lat:
-                          type: string
-                          example: "0.00000000000"
-                        lng:
-                          type: string
-                          example: "0.00000000000"
-                        mobile:
-                          type: string
-                          example: "123456789"
-                        pan:
-                          type: string
-                          example: "1234qwer"
-                        phone:
-                          type: string
-                          example: "123456789"
-                        tan:
-                          type: string
-                          example: "1234asdf"
-                        active:
-                          type: boolean
-                          example: true
                     img:
                       type: object
                       properties:
