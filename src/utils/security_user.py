@@ -5,6 +5,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 from db import db
 from sqlalchemy import text
+from utils.util import random_number
 
 class JwtIdentify(object):
     def __init__(self, id):
@@ -64,3 +65,40 @@ class SecurityUser(Resource):
     def identity(payload):
         jwt_identity = payload['identity']
         return jwt_identity
+
+    @swag_from('../../spec/app/forgot_password.yml')
+    def get(self):
+        res_json = {}
+        data = {}
+        param = {}
+        param["vid"] = request.args['vid']
+        param["userid"] = request.args['userid']
+        if param["vid"] and param["vid"] :
+            sql = """
+                select
+                    id
+                from profile 
+                where vid = '{vid}'
+                and (email = '{userid}' or mobile = '{userid}')
+            """.format(**param)
+            result = db.engine.execute(text(sql)).first();
+            if result and result[0]:
+                param["token"] = random_number(4)
+                sql = """
+                    update profile set
+                        token = '{token}'
+                    where vid = '{vid}'
+                    and (email = '{userid}' or mobile = '{userid}')
+                """.format(**param)
+                db.engine.execute(text(sql));
+                res_json['status'] = 1
+                data['message'] = "your token: {}".format(param["token"])
+            else:
+                res_json['status'] = 0
+                data['message'] = "Invalid email or mobile."
+        else:
+            res_json['status'] = 0
+            data['message'] = "Please provide vendor id and email or mobile."
+
+        res_json['data'] = data
+        return jsonify(res_json)
