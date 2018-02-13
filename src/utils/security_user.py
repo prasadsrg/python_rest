@@ -73,7 +73,8 @@ class SecurityUser(Resource):
         param = {}
         param["vid"] = request.args['vid']
         param["userid"] = request.args['userid']
-        if param["vid"] and param["vid"] :
+
+        if param["vid"] and param["userid"]:
             sql = """
                 select
                     id
@@ -99,6 +100,53 @@ class SecurityUser(Resource):
         else:
             res_json['status'] = 0
             data['message'] = "Please provide vendor id and email or mobile."
+
+        res_json['data'] = data
+        return jsonify(res_json)
+
+    @swag_from('../../spec/app/reset_password.yml')
+    def put(self):
+        res_json = {}
+        data = {}
+        param = {}
+        req_json = json.loads(request.data)
+        req_data = req_json.get('data', None)
+
+        param["vid"] = req_data.get('vid', None)
+        param["userid"] = req_data.get('userid', None)
+        param["password"] = req_data.get('password', None)
+        param["token"] = req_data.get('token', None)
+
+
+
+        if param["vid"] and param["userid"] and param["password"] and param["token"]:
+            sql = """
+                select
+                    id
+                from profile 
+                where vid = '{vid}'
+                and (email = '{userid}' or mobile = '{userid}')
+                and token = '{token}'
+            """.format(**param)
+            result = db.engine.execute(text(sql)).first();
+            if result and result[0]:
+                param["token"] = random_number(4)
+                sql = """
+                    update profile set
+                        token = null
+                        and password = '{password}'
+                    where vid = '{vid}'
+                    and (email = '{userid}' or mobile = '{userid}')
+                """.format(**param)
+                db.engine.execute(text(sql));
+                res_json['status'] = 1
+                data['message'] = "your password updated successfully."
+            else:
+                res_json['status'] = 0
+                data['message'] = "Invalid token or email or mobile."
+        else:
+            res_json['status'] = 0
+            data['message'] = "Please provide required details."
 
         res_json['data'] = data
         return jsonify(res_json)

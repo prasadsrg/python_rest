@@ -52,6 +52,7 @@ parameters:
                       properties:
                         id:
                           type: string
+                          example: null
                         name:
                           type: string
                           example: "abcd"
@@ -70,15 +71,12 @@ parameters:
                     mobile:
                       type: string
                       example: "123456789"
-                    token:
-                      type: string
-                      example: "1234qwer"
                     phone:
                       type: string
                       example: "123456789"
                     role:
                       type: string
-                      example: "developer"
+                      example: "Anonymous"
                     active:
                       type: boolean
                       example: true
