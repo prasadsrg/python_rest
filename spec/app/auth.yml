@@ -11,10 +11,10 @@ parameters:
       properties:
           username:
             type: string
-            example: abcd
+            example: DFF-123456789
           password:
             type: string
-            example: abcd
+            example: 1234
 
 responses:
  200:

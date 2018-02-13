@@ -1,6 +1,7 @@
 from sqlalchemy.orm.mapper import class_mapper
 from sqlalchemy import inspect
 import time
+from random import randint
 
 def model_to_dict(obj, visited_children=None, back_relationships=None):
     if visited_children is None:
@@ -25,7 +26,7 @@ def model_to_dict(obj, visited_children=None, back_relationships=None):
                 serialized_data[name] = model_to_dict(relationship_children, visited_children, back_relationships)
     return serialized_data
 
-def toD32(dec):
+def toD36(dec):
     digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     hex_str = ''
     if dec == 0:
@@ -45,4 +46,10 @@ def uid():
         time.sleep(1)
         utime = int(time.time());
     uniqueId = utime;
-    return toD32(utime);
+    return toD36(utime);
+
+
+def random_number(n):
+    range_start = 10**(n-1)
+    range_end = (10**n)-1
+    return randint(range_start, range_end)
