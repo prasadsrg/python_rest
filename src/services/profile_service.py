@@ -17,9 +17,7 @@ class ProfileService:
 
     def mapping(self, model, view):
         print(self.session_info)
-        if view.get('id', None) is not None:
-            model = ProfileModel.query.filter_by(id=view.get('id')).first()
-        if model is None:
+        if model.id is None:
             model = ProfileModel()
             model.id = uid()
             model.branchId = view['branch']['id']
@@ -39,16 +37,33 @@ class ProfileService:
         AddressMapper(model.address, view.get('address', None)).model_mapping()
         ImgMapper(model.img, view.get('img', None)).model_mapping()
         return model
-
+    def isValidate(self, model):
+        model.vid = self.session_info['vid']
+        list = ProfileModel.query.filter(vid==model.vid, (mobile==model.mobile | email == model.email))
+        if list:
+            if model.id is None:
+                return False;
+            else:
+                for item in list:
+                    if item.id != model.id:
+                        return False
+        return True
     def save(self, req_data):
-        profile = self.mapping(None, req_data)
-        db.session.add(profile)
-        db.session.commit()
-        return {'message': 'Saved Successfully', 'id': profile.id}
-
+        profile = None
+        _id = req_data('id', None);
+        if _id is not None:
+            profile = ProfileModel.query.filter_by(id=_id).first()
+        if model is None:
+            profile = ProfileModel()
+        if isValidate(profile):
+            self.mapping(profile, req_data)
+            db.session.add(profile)
+            db.session.commit()
+            return {'message': 'Saved Successfully', 'id': profile.id}
+        else:
+            raise Exception('Record already exists')
 
     def search(self):
         print("branch service")
         data_list = ProfileModel.query.all()
-        print(data_list[0].__dict__)
         return data_list
