@@ -36,6 +36,18 @@ parameters:
                         zipcode:
                           type: string
                           example: "516789"
+                    img:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        name:
+                          type: string
+                          example: "abcd"
+                        src:
+                          type: string
+                          example: "source"
                     email:
                       type: string
                       example: "main@branch.com"

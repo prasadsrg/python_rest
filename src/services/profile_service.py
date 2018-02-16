@@ -7,7 +7,6 @@ from models.img_model import ImgModel
 
 from mappers.profile_mapper import ProfileMapper
 from mappers.img_mapper import ImgMapper
-from mappers.branch_mapper import BranchMapper
 from mappers.address_mapper import AddressMapper
 import datetime
 

@@ -7,7 +7,6 @@ create table apex_data (
 );
 alter table apex_data add constraint apex_data_uq_name_code unique( name, code);
 
-
 create table vendor (
     id varchar(50) primary key,
     name varchar(50) not null,
@@ -55,12 +54,19 @@ create table app_data(
 alter table app_data add constraint app_data_uq_name_code_vid unique(name, code, vid);
 
 create table address (
-    id varchar(30) primary key,
-    lane varchar(99),
-    city varchar(30),
-    state varchar(30),
-    country varchar(30) default 'India',
-    zipcode int(8)
+	id varchar(30) primary key,
+	lane varchar(99),
+	land_mark varchar(99),
+	city varchar(30),
+	state varchar(30),
+	country varchar(30) default 'India',
+	zipcode int(9)
+);
+
+create table img (
+     id varchar(30) primary key,
+     name varchar(99) default 'upload',
+     src longtext
 );
 
 create table branch(
@@ -75,6 +81,7 @@ create table branch(
     lat varchar(99),
     lng varchar(99),
     address_id varchar(30) not null,
+	img_id varchar(30),
     is_main boolean not null default false,
     active boolean not null default true,
     vid varchar(50) not null,
@@ -82,12 +89,10 @@ create table branch(
     updated_on timestamp default now()
 );
 alter table branch add constraint branch_fk_address_id foreign key (address_id) references address(id);
+alter table branch add constraint branch_fk_img_id  foreign key (img_id) references img(id);
 
-create table img (
-     id varchar(30) primary key,
-     name varchar(99) default 'upload',
-     src longtext
-);
+
+
 
 create table profile (
     id varchar(30) primary key,

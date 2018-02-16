@@ -1,5 +1,6 @@
 from db import db
 from models.address_model import AddressModel
+from models.img_model import ImgModel
 class BranchModel(db.Model):
 
     __tablename__ = 'branch'
@@ -18,5 +19,7 @@ class BranchModel(db.Model):
     vid = db.Column('vid', db.String)
     addressId = db.Column('address_id', db.String, db.ForeignKey('address.id'))
     address = db.relationship(AddressModel)
+    imgId = db.Column('img_id', db.String, db.ForeignKey('img.id'))
+    img = db.relationship(ImgModel)
     updatedBy= db.Column('updated_by', db.String)
     updatedOn = db.Column('updated_on', db.DateTime)

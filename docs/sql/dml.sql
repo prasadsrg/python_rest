@@ -1,12 +1,7 @@
-insert into apex_data(code, name) values ('ROLE', 'Anonymous');
-insert into apex_data(code, name) values ('ROLE', 'User');
-insert into apex_data(code, name) values ('ROLE', 'Admin');
-insert into apex_data(code, name) values ('ROLE', 'SuperAdmin');
 
-insert into apex_data(code, name) values ('MENU', 'Admin Dashboard');
 insert into apex_data(code, name) values ('MENU', 'Dashboard');
 insert into apex_data(code, name) values ('MENU', 'App Data');
-insert into apex_data(code, name) values ('MENU', 'Consumer');
+insert into apex_data(code, name) values ('MENU', 'Consumers');
 insert into apex_data(code, name) values ('MENU', 'Branches');
 insert into apex_data(code, name) values ('MENU', 'Profiles');
 insert into apex_data(code, name) values ('MENU', 'Reports');
@@ -15,7 +10,8 @@ insert into apex_data(code, name) values('MENU', 'Menu Access');
 
 insert into vendor(id, title, name) values('DFF', 'DFFTech', 'DFF Tech');
 insert into address(id) values('DFF_MAIN_BRANCH');
-INSERT INTO branch (id, name, vid, is_main, address_id ) VALUES ('DFF_MAIN_BRANCH','DL Tech', 'DFF', true, 'DFF_MAIN_BRANCH');
+insert into img( id)  values('DFF_BRANCH_IMG');
+INSERT INTO branch (id, name, vid, is_main, address_id, img_id ) VALUES ('DFF_MAIN_BRANCH','DL Tech', 'DFF', true, 'DFF_MAIN_BRANCH', 'DFF_BRANCH_IMG');
 
 insert into img( id)  values('SUPPORT_DFF_IMG');
 insert into address(id) values('SUPPORT_DFF_ADDRESS');
