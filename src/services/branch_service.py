@@ -1,4 +1,4 @@
-from db import db
+from db import db, session
 from utils.util import uid
 from models.branch_model import BranchModel
 from models.address_model import AddressModel
@@ -15,7 +15,7 @@ class BranchService:
     def mapping(self, model, view):
         print(self.session_info)
         if view.get('id', None) is not None:
-            model = BranchModel.query.filter_by(id=view.get('id')).first()
+            model = session.query(BranchModel).filter_by(id=view.get('id')).first()
         if model is None:
             model = BranchModel()
             model.id = uid()
